@@ -1,16 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.examendesarrollointerfaces.MainViewController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+
+<BorderPane maxHeight="600.0" maxWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.examendesarrollointerfaces.controllers.MainViewController">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="900.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="59.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/logo_cesur.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Parking CESUR" textFill="#002858">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <bottom>
+            <Label text="Aplicación creada por Jorge Olmedo Jiménez" textFill="#29b2f2" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin>
+            </Label>
+         </bottom>
+         <center>
+            <SplitPane dividerPositions="0.3033" prefHeight="140.0" prefWidth="200.0" style="-fx-background-color: #002858;" BorderPane.alignment="CENTER">
+               <items>
+                  <BorderPane>
+                     <center>
+                        <VBox alignment="TOP_CENTER" prefHeight="421.0" prefWidth="393.0" spacing="15.0">
+                           <children>
+                              <Label text="Nueva entrada" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                 <children>
+                                    <Label text="Matrícula" textFill="WHITE" />
+                                    <TextField fx:id="txtMatricula" prefHeight="26.0" prefWidth="147.0" promptText="matrícula" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                 <children>
+                                    <Label text="Modelo" textFill="WHITE" />
+                                    <ComboBox fx:id="comboModelo" prefHeight="26.0" prefWidth="156.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                 <children>
+                                    <Label text="Cliente" textFill="WHITE" />
+                                    <ComboBox fx:id="comboCliente" prefHeight="26.0" prefWidth="159.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                 <children>
+                                    <Label text="Tarifa" textFill="WHITE" />
+                                    <VBox spacing="5.0">
+                                       <children>
+                                          <RadioButton fx:id="radioStandart" mnemonicParsing="false" text="Standart" textFill="WHITE" />
+                                          <RadioButton fx:id="radioOferta" mnemonicParsing="false" text="Oferta" textFill="WHITE" />
+                                          <RadioButton fx:id="radioLargaDuracion" mnemonicParsing="false" text="Larga duración" textFill="WHITE" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="20.0">
+                                 <children>
+                                    <Label text="Entrada" textFill="WHITE" />
+                                    <DatePicker fx:id="dateEntrada" prefHeight="25.0" prefWidth="150.0" />
+                                 </children>
+                              </HBox>
+                              <HBox spacing="20.0">
+                                 <children>
+                                    <Label text="Salida" textFill="WHITE" />
+                                    <DatePicker fx:id="dateSalida" prefHeight="26.0" prefWidth="160.0" />
+                                 </children>
+                              </HBox>
+                              <HBox spacing="70.0">
+                                 <children>
+                                    <Label text="Coste" textFill="WHITE" />
+                                    <Label fx:id="lblPrecio" text="XXX €" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                              <Button fx:id="btnAñadir" mnemonicParsing="false" onAction="#añadir" text="Añadir a la tabla" />
+                              <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" text="Salir de la aplicación">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+                  <BorderPane prefHeight="421.0" prefWidth="491.0">
+                     <center>
+                        <TableView fx:id="tvParking" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="cMatricula" prefWidth="75.0" text="Matrícula" />
+                            <TableColumn fx:id="cModelo" prefWidth="75.0" text="Modelo" />
+                              <TableColumn fx:id="cFechaEntrada" prefWidth="75.0" text="Fecha de entrada" />
+                              <TableColumn fx:id="cFechaSalida" prefWidth="75.0" text="Fecha de salida" />
+                              <TableColumn fx:id="cCliente" prefWidth="75.0" text="Cliente" />
+                              <TableColumn fx:id="cTarifa" prefWidth="75.0" text="Tarifa" />
+                              <TableColumn fx:id="cCoste" prefWidth="75.0" text="Coste" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                           <BorderPane.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </BorderPane.margin>
+                        </TableView>
+                     </center>
+                  </BorderPane>
+               </items>
+               <BorderPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </BorderPane.margin>
+            </SplitPane>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

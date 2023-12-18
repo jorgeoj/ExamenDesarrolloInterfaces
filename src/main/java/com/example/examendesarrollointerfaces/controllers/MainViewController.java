@@ -131,10 +131,6 @@ public class MainViewController implements Initializable {
             alert.setContentText( "El campo matricula no puede estar vacio" );
             alert.show();
         }
-        else if(tarifa.getSelectedToggle()==null){
-            alert.setContentText( "debe seleccionar una tarifa" );
-            alert.show();
-        }
         else if(dateEntrada.getValue()==null){
             alert.setContentText( "debe seleccionar una fecha de entrada" );
             alert.show();
@@ -143,9 +139,10 @@ public class MainViewController implements Initializable {
             alert.setContentText( "debe seleccionar una fecha de salida" );
             alert.show();
         }
+        /*Comprobar tarifa*/
         else{
             Cliente cliente = new Cliente();
-            Coche coche = new Coche(txtMatricula.getText(), comboModelo.getValue(), cliente, tarifa.selectedToggleProperty().getName() , dateEntrada.getValue() , dateSalida.getValue());
+            Coche coche = new Coche(txtMatricula.getText(), comboModelo.getValue(), cliente, /*Campo tarifa*/, dateEntrada.getValue() , dateSalida.getValue());
             cliente.setNombre(String.valueOf(comboCliente.getValue()));
             ObservableList<Coche> observableCoches= FXCollections.observableArrayList();
             observableCoches.add( coche );

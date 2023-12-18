@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e0a637c-5aff-49f8-a8c8-5d95e164f1bf" name="Changes" comment="Primer commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/clientes/Cliente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/coches/Coche.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/controllers/MainViewController.java" afterDir="false" />
+    <list default="true" id="2e0a637c-5aff-49f8-a8c8-5d95e164f1bf" name="Changes" comment="Hechas clases Coche y Cliente y terminada primera version del fxml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/MainViewController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/clientes/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/clientes/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/coches/Coche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/coches/Coche.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/controllers/MainViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/examendesarrollointerfaces/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/examendesarrollointerfaces/main-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +47,9 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -74,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1702899084946</updated>
-      <workItem from="1702899086003" duration="1933000" />
+      <workItem from="1702899086003" duration="4066000" />
     </task>
     <task id="LOCAL-00001" summary="Primer commit">
       <option name="closed" value="true" />
@@ -84,7 +85,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702899620319</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Hechas clases Coche y Cliente y terminada primera version del fxml">
+      <option name="closed" value="true" />
+      <created>1702903278107</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702903278107</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,6 +101,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Primer commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Primer commit" />
+    <MESSAGE value="Hechas clases Coche y Cliente y terminada primera version del fxml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hechas clases Coche y Cliente y terminada primera version del fxml" />
   </component>
 </project>

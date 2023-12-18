@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="600.0" maxWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.examendesarrollointerfaces.controllers.MainViewController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -38,7 +37,7 @@
             </HBox>
          </top>
          <bottom>
-            <Label text="Aplicación creada por Jorge Olmedo Jiménez" textFill="#29b2f2" BorderPane.alignment="CENTER">
+            <Label fx:id="lblInfo" onMousePressed="#infoAlumno" text="Aplicación creada por Jorge Olmedo Jiménez" textFill="#29b2f2" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="10.0" />
                </BorderPane.margin>

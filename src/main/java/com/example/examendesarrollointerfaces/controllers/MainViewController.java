@@ -151,6 +151,8 @@ public class MainViewController implements Initializable {
             dateEntrada.setValue( null );
             dateSalida.setValue( null );
         }
+
+
     }
 
     @FXML

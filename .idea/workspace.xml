@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e0a637c-5aff-49f8-a8c8-5d95e164f1bf" name="Changes" comment="Hechas clases Coche y Cliente y terminada primera version del fxml">
+    <list default="true" id="2e0a637c-5aff-49f8-a8c8-5d95e164f1bf" name="Changes" comment="Quitado lombok de Cliente y Coche (por errores), label info funciona">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/clientes/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/clientes/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/coches/Coche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/coches/Coche.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/examendesarrollointerfaces/controllers/MainViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/examendesarrollointerfaces/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/examendesarrollointerfaces/main-view.fxml" afterDir="false" />
@@ -42,7 +42,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/jorge/Desktop/Cosas útiles para el examen de Acceso a datos/GestorJuegos",
+    "last_opened_file_path": "C:/Users/jorge/Desktop/Cosas útiles para el examen de Acceso a datos/GestorPedidosObjectDB",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -75,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1702899084946</updated>
-      <workItem from="1702899086003" duration="4066000" />
+      <workItem from="1702899086003" duration="5749000" />
     </task>
     <task id="LOCAL-00001" summary="Primer commit">
       <option name="closed" value="true" />
@@ -93,7 +93,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702903278107</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Quitado lombok de Cliente y Coche (por errores), label info funciona">
+      <option name="closed" value="true" />
+      <created>1702905340153</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1702905340153</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +110,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Primer commit" />
     <MESSAGE value="Hechas clases Coche y Cliente y terminada primera version del fxml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hechas clases Coche y Cliente y terminada primera version del fxml" />
+    <MESSAGE value="Quitado lombok de Cliente y Coche (por errores), label info funciona" />
+    <option name="LAST_COMMIT_MESSAGE" value="Quitado lombok de Cliente y Coche (por errores), label info funciona" />
   </component>
 </project>

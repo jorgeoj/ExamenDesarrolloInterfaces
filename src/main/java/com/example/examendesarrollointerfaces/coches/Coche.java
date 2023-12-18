@@ -2,6 +2,7 @@ package com.example.examendesarrollointerfaces.coches;
 
 import com.example.examendesarrollointerfaces.clientes.Cliente;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Coche {
@@ -9,11 +10,11 @@ public class Coche {
     private String modelo;
     private Cliente cliente;
     private String tipoTarifa;
-    private Date fechaEntrada;
-    private Date fechaSalida;
+    private LocalDate fechaEntrada;
+    private LocalDate fechaSalida;
     private Double costeTotal;
 
-    public Coche(String matricula, String modelo, Cliente cliente, String tipoTarifa, Date fechaEntrada, Date fechaSalida, Double costeTotal) {
+    public Coche(String matricula, String modelo, Cliente cliente, String tipoTarifa, LocalDate fechaEntrada, LocalDate fechaSalida, Double costeTotal) {
         this.matricula = matricula;
         this.modelo = modelo;
         this.cliente = cliente;
@@ -42,11 +43,11 @@ public class Coche {
         return this.tipoTarifa;
     }
 
-    public Date getFechaEntrada() {
+    public LocalDate getFechaEntrada() {
         return this.fechaEntrada;
     }
 
-    public Date getFechaSalida() {
+    public LocalDate getFechaSalida() {
         return this.fechaSalida;
     }
 
@@ -70,11 +71,11 @@ public class Coche {
         this.tipoTarifa = tipoTarifa;
     }
 
-    public void setFechaEntrada(Date fechaEntrada) {
+    public void setFechaEntrada(LocalDate fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
 
-    public void setFechaSalida(Date fechaSalida) {
+    public void setFechaSalida(LocalDate fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 

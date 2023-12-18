@@ -2,6 +2,9 @@ package com.example.examendesarrollointerfaces.controllers;
 
 import com.example.examendesarrollointerfaces.clientes.Cliente;
 import com.example.examendesarrollointerfaces.coches.Coche;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -59,22 +64,95 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        Cliente c1 = new Cliente("1","Francisco", "francisco@gmail.com");
+        Cliente c2 = new Cliente("2","Jorge", "jorge@gmail.com");
+        Cliente c3 = new Cliente("3","Rafael", "rafa@gmail.com");
+
+        tvParking.getItems().add(new Coche("1234A", "Audi", c1, "Standart", LocalDate.of(2023, 12, 3),
+                LocalDate.of(2023, 12, 7), 40.0));
+        tvParking.getItems().add(new Coche("5678B", "Mercedes", c2, "Oferta", LocalDate.of(2023, 12, 5),
+                LocalDate.of(2023, 12, 6), 12.0));
+        tvParking.getItems().add(new Coche("9101C", "Mini", c3, "Larga duracion", LocalDate.of(2023, 12, 1),
+                LocalDate.of(2023, 12, 10), 20.0));
+
+
+        ObservableList<String> modelos = FXCollections.observableArrayList();
+        modelos.addAll("Audi", "Hyundai", "Mercedes", "Ford", "Mini");
+        comboModelo.getItems().addAll(modelos);
+        comboModelo.getSelectionModel().selectFirst();
+
+        comboCliente.getItems().addAll(c1, c2, c3);
+        comboCliente.getSelectionModel().selectFirst();
+
+        cMatricula.setCellValueFactory((fila) ->{
+            var salida = fila.getValue().getMatricula();
+            return new SimpleStringProperty(salida);
+        });
+        cModelo.setCellValueFactory((fila) ->{
+            var salida = fila.getValue().getModelo();
+            return new SimpleStringProperty(salida);
+        });
+        cFechaEntrada.setCellValueFactory((fila)->{
+            LocalDate fecha = fila.getValue().getFechaEntrada();
+            // Definir el formato deseado para la fecha (día/mes/año)
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            // Formatear la fecha al nuevo formato
+            String fechaFormateada = fecha.format(formatter);
+            return new SimpleStringProperty(fechaFormateada);
+        });
+        cFechaSalida.setCellValueFactory((fila)->{
+            LocalDate fecha = fila.getValue().getFechaSalida();
+            // Definir el formato deseado para la fecha (día/mes/año)
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            // Formatear la fecha al nuevo formato
+            String fechaFormateada = fecha.format(formatter);
+            return new SimpleStringProperty(fechaFormateada);
+        });
+        cCliente.setCellValueFactory((fila) ->{
+            var salida = fila.getValue().getCliente().getNombre();
+            return new SimpleStringProperty(salida);
+        });
+        cTarifa.setCellValueFactory((fila) ->{
+            var salida = fila.getValue().getTipoTarifa();
+            return new SimpleStringProperty(salida);
+        });
+        cCoste.setCellValueFactory((fila) ->{
+            var salida = fila.getValue().getCosteTotal() +" €";
+            return new SimpleStringProperty(salida);
+        });
+
+
     }
 
     @FXML
     public void añadir(ActionEvent actionEvent) {
-        if (!txtMatricula.getText().isEmpty()){
-            Coche coche = new Coche();
-            coche.setMatricula(txtMatricula.getText());
-            coche.setModelo(comboModelo.getSelectionModel().getSelectedItem());
-            coche.setCliente(comboCliente.getSelectionModel().getSelectedItem());
-
-            //Añadir a la tabla lo que acabamos de poner al darle al boton
-            tvParking.getItems().add(coche);
-        }else{
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("No ha introducido todos los datos");
+        Alert alert = new Alert( Alert.AlertType.WARNING );
+        if(txtMatricula.getText().isEmpty()){
+            alert.setContentText( "El campo matricula no puede estar vacio" );
             alert.show();
+        }
+        else if(tarifa.getSelectedToggle()==null){
+            alert.setContentText( "debe seleccionar una tarifa" );
+            alert.show();
+        }
+        else if(dateEntrada.getValue()==null){
+            alert.setContentText( "debe seleccionar una fecha de entrada" );
+            alert.show();
+        }
+        else if(dateSalida.getValue()==null){
+            alert.setContentText( "debe seleccionar una fecha de salida" );
+            alert.show();
+        }
+        else{
+            Cliente cliente = new Cliente();
+            Coche coche = new Coche(txtMatricula.getText(), comboModelo.getValue(), cliente, tarifa.selectedToggleProperty().getName() , dateEntrada.getValue() , dateSalida.getValue());
+            cliente.setNombre(String.valueOf(comboCliente.getValue()));
+            ObservableList<Coche> observableCoches= FXCollections.observableArrayList();
+            observableCoches.add( coche );
+            tvParking.setItems( observableCoches );
+            txtMatricula.setText( "" );
+            dateEntrada.setValue( null );
+            dateSalida.setValue( null );
         }
     }
 

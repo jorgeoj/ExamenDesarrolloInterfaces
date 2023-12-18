@@ -10,9 +10,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
+import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -61,27 +63,43 @@ public class MainViewController implements Initializable {
     @FXML
     private Label lblInfo;
 
+    private ObservableList<Coche> cocheObservableList = FXCollections.observableArrayList();
+    ObservableList<Cliente> clientes = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         Cliente c1 = new Cliente("1","Francisco", "francisco@gmail.com");
         Cliente c2 = new Cliente("2","Jorge", "jorge@gmail.com");
         Cliente c3 = new Cliente("3","Rafael", "rafa@gmail.com");
+        clientes.addAll(c1,c2,c3);
 
-        tvParking.getItems().add(new Coche("1234A", "Audi", c1, "Standart", LocalDate.of(2023, 12, 3),
+        cocheObservableList.add(new Coche("1234A", "Audi", c1, "Standart", LocalDate.of(2023, 12, 3),
                 LocalDate.of(2023, 12, 7), 40.0));
-        tvParking.getItems().add(new Coche("5678B", "Mercedes", c2, "Oferta", LocalDate.of(2023, 12, 5),
+        cocheObservableList.add(new Coche("5678B", "Mercedes", c2, "Oferta", LocalDate.of(2023, 12, 5),
                 LocalDate.of(2023, 12, 6), 12.0));
-        tvParking.getItems().add(new Coche("9101C", "Mini", c3, "Larga duracion", LocalDate.of(2023, 12, 1),
+        cocheObservableList.add(new Coche("9101C", "Mini", c3, "Larga duracion", LocalDate.of(2023, 12, 1),
                 LocalDate.of(2023, 12, 10), 20.0));
 
+
+        tvParking.setItems(cocheObservableList);
 
         ObservableList<String> modelos = FXCollections.observableArrayList();
         modelos.addAll("Audi", "Hyundai", "Mercedes", "Ford", "Mini");
         comboModelo.getItems().addAll(modelos);
         comboModelo.getSelectionModel().selectFirst();
 
-        comboCliente.getItems().addAll(c1, c2, c3);
+        comboCliente.setConverter(new StringConverter<Cliente>() {
+            @Override
+            public String toString(Cliente cliente) {
+                if(cliente!=null) return cliente.getNombre();
+                else return null;
+            }
+            @Override
+            public Cliente fromString(String s) {
+                return null;
+            }
+        });
+        comboCliente.setItems(clientes);
         comboCliente.getSelectionModel().selectFirst();
 
         cMatricula.setCellValueFactory((fila) ->{
@@ -120,39 +138,71 @@ public class MainViewController implements Initializable {
             var salida = fila.getValue().getCosteTotal() +" €";
             return new SimpleStringProperty(salida);
         });
-
-
     }
 
     @FXML
     public void añadir(ActionEvent actionEvent) {
-        Alert alert = new Alert( Alert.AlertType.WARNING );
-        if(txtMatricula.getText().isEmpty()){
-            alert.setContentText( "El campo matricula no puede estar vacio" );
-            alert.show();
-        }
-        else if(dateEntrada.getValue()==null){
-            alert.setContentText( "debe seleccionar una fecha de entrada" );
-            alert.show();
-        }
-        else if(dateSalida.getValue()==null){
-            alert.setContentText( "debe seleccionar una fecha de salida" );
-            alert.show();
-        }
-        /*Comprobar tarifa*/
-        else{
-            Cliente cliente = new Cliente();
-            Coche coche = new Coche(txtMatricula.getText(), comboModelo.getValue(), cliente, /*Campo tarifa*/, dateEntrada.getValue() , dateSalida.getValue());
-            cliente.setNombre(String.valueOf(comboCliente.getValue()));
-            ObservableList<Coche> observableCoches= FXCollections.observableArrayList();
-            observableCoches.add( coche );
-            tvParking.setItems( observableCoches );
-            txtMatricula.setText( "" );
-            dateEntrada.setValue( null );
-            dateSalida.setValue( null );
+        if (!txtMatricula.getText().isEmpty() && comboModelo.getValue() != null && comboCliente.getValue() != null
+                && dateEntrada.getValue() != null && dateSalida.getValue() != null && (radioStandart.isSelected() || radioOferta.isSelected() || radioLargaDuracion.isSelected())) {
+
+            LocalDate fechaEntrada = dateEntrada.getValue();
+            LocalDate fechaSalida = dateSalida.getValue();
+
+            Period periodo = Period.between(fechaEntrada, fechaSalida);
+
+            Integer dias = periodo.getDays();
+
+
+            double precioDiario = 0;
+            String tarifaSeleccionada = "";
+
+            if (radioStandart.isSelected()) {
+                precioDiario = 8;
+                tarifaSeleccionada = "Standard";
+            } else if (radioOferta.isSelected()) {
+                precioDiario = 6;
+                tarifaSeleccionada = "Oferta";
+            } else if (radioLargaDuracion.isSelected()) {
+                precioDiario = 2;
+                tarifaSeleccionada = "Larga Duración";
+            }
+
+            double coste = dias * precioDiario;
+
+            Coche coche = new Coche();
+            coche.setMatricula(txtMatricula.getText());
+            coche.setModelo(comboModelo.getValue());
+            coche.setFechaEntrada(fechaEntrada);
+            coche.setFechaSalida(fechaSalida);
+            coche.setCliente(comboCliente.getValue());
+            coche.setTipoTarifa(tarifaSeleccionada);
+            coche.setCosteTotal(coste);
+
+            cocheObservableList.add(coche);
+            tvParking.setItems(cocheObservableList);
+
+            lblPrecio.setText(coste +"€");
+
+            limpiarDatos();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("No se han rellenado todos los campos");
+            alert.showAndWait();
         }
 
 
+    }
+
+    private void limpiarDatos() {
+        txtMatricula.clear();
+        comboModelo.setValue(null);
+        comboCliente.setValue(null);
+        dateEntrada.setValue(null);
+        dateSalida.setValue(null);
+        radioStandart.setSelected(false);
+        radioOferta.setSelected(false);
+        radioLargaDuracion.setSelected(false);
     }
 
     @FXML
